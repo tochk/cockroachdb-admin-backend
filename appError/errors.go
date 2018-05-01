@@ -1,4 +1,4 @@
-package errors
+package appError
 
 import (
 	"encoding/json"
@@ -7,12 +7,12 @@ import (
 )
 
 type err struct {
-	Code  int
-	Human string
-	Err   string
+	Code  int `json:"code"`
+	Human string `json:"human"`
+	Err   string `json:"err"`
 }
 
-var fatal = "{\"Code\":500,\"Human\":\"Fatal error\",\"Err\":\"idk what is happening\"}"
+var fatal = "{\"code\":500,\"human\":\"Fatal error\",\"err\":\"idk what is happening\"}"
 
 func GetJsonError(code int, human string, appError error) string {
 	result, jsonError := json.Marshal(err{Code: code, Human: human, Err: appError.Error()})

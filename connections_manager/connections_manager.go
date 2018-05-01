@@ -8,6 +8,7 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	"github.com/tochk/cockroachdb-admin-backend/configuration"
+	"github.com/tochk/cockroachdb-admin-backend/user"
 )
 
 var connections map[string]*sqlx.DB
@@ -39,12 +40,14 @@ func generateToken(login, password string) (string) {
 	return token
 }
 
-func Connect(login, password string) (token string, err error) {
-	token = generateToken(login, password)
-	connections[token], err = sqlx.Connect("postgres", "host="+configuration.Database.Host+" port="+strconv.Itoa(configuration.Database.Port)+" user="+login+" password="+password)
+func Connect(usr user.User) (token string, err error) {
+	token = generateToken(usr.Login, usr.Password)
+	connections[token], err = sqlx.Connect("postgres", "host="+configuration.Database.Host+" port="+strconv.Itoa(configuration.Database.Port)+" user="+usr.Login+" password="+usr.Password)
 	return token, err
 }
 
 func GetConnection(token string) *sqlx.DB {
 	return connections[token]
 }
+
+//todo kill connections while inactive
