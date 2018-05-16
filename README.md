@@ -19,6 +19,25 @@ Response:
 }
 ```
 
+### Get databases "/api/databases/"
+Request:
+```
+{
+    "token": "sample token"
+}
+```
+
+Response:
+
+```
+[
+    {
+        "database": "db_name"
+    },
+    ...
+]
+```
+
 ### Errors
 Any kind of error sends json reply like this:
 
@@ -36,5 +55,7 @@ Any kind of error sends json reply like this:
 error 1 - json parse error
 
 error 2 - database connection error
+
+error 3 - get databases error
 
 error 500 - fatal error

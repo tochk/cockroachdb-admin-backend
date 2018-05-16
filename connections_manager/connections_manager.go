@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 	"github.com/tochk/cockroachdb-admin-backend/configuration"
 	"github.com/tochk/cockroachdb-admin-backend/user"
 )

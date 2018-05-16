@@ -27,6 +27,7 @@ func main() {
 	log.Info("Configuration file loaded")
 
 	http.HandleFunc("/api/connect/", api.ConnectHandler)
+	http.HandleFunc("/api/databases/", api.DatabasesHandler)
 	log.Info("Starting listen connections on ", *servicePort)
 	http.ListenAndServe(*servicePort, nil)
 }
