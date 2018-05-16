@@ -28,6 +28,7 @@ func main() {
 
 	http.HandleFunc("/api/connect/", api.ConnectHandler)
 	http.HandleFunc("/api/databases/", api.DatabasesHandler)
+	http.HandleFunc("/api/tables/", api.TablesHandler)
 	log.Info("Starting listen connections on ", *servicePort)
 	http.ListenAndServe(*servicePort, nil)
 }
