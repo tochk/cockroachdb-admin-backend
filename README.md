@@ -58,4 +58,6 @@ error 2 - database connection error
 
 error 3 - get databases error
 
+error 4 - invalid token
+
 error 500 - fatal error

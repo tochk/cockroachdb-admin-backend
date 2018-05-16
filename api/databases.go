@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/tochk/cockroachdb-admin-backend/appError"
+	"github.com/tochk/cockroachdb-admin-backend/connections_manager"
 	"github.com/tochk/cockroachdb-admin-backend/databases"
 )
 
@@ -18,8 +19,13 @@ func DatabasesHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, appError.GetJsonError(1, "Parsing json error", err))
 		return
 	}
+
 	db, err := databases.GetDatabases(auth.Token)
 	if err != nil {
+		if err == connections_manager.InvalidTokenError {
+			fmt.Fprint(w, appError.GetJsonError(4, "Invalid token", err))
+			return
+		}
 		fmt.Fprint(w, appError.GetJsonError(3, "Get databases error", err))
 		return
 	}

@@ -3,6 +3,7 @@ package connections_manager
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"errors"
 	"math/rand"
 	"strconv"
 
@@ -13,6 +14,8 @@ import (
 )
 
 var connections map[string]*sqlx.DB
+
+var InvalidTokenError = errors.New("invalid token")
 
 func Init() {
 	connections = make(map[string]*sqlx.DB)
@@ -47,8 +50,11 @@ func Connect(usr user.User) (token string, err error) {
 	return token, err
 }
 
-func GetConnection(token string) *sqlx.DB {
-	return connections[token]
+func GetConnection(token string) (*sqlx.DB, error) {
+	if connections[token] == nil {
+		return nil, InvalidTokenError
+	}
+	return connections[token], nil
 }
 
 //todo kill connections while inactive

@@ -7,6 +7,10 @@ type Db struct {
 }
 
 func GetDatabases(token string) (db []Db, err error) {
-	err = connections_manager.GetConnection(token).Select(&db, "SHOW DATABASES")
+	conn, err := connections_manager.GetConnection(token)
+	if err != nil {
+		return db, err
+	}
+	err = conn.Select(&db, "SHOW DATABASES")
 	return
 }
