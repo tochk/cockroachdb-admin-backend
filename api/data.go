@@ -26,7 +26,7 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprint(w, appError.GetJsonError(4, "Invalid token", err))
 			return
 		}
-		fmt.Fprint(w, appError.GetJsonError(5, "Get tables error", err))
+		fmt.Fprint(w, appError.GetJsonError(6, "Get data error", err))
 		return
 	}
 	result, err := json.Marshal(tbl)

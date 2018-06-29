@@ -59,6 +59,29 @@ Response:
 ]
 ```
 
+### Get data "/api/data/"
+Request:
+```
+{
+    "token": "sample token",
+    "db": "db_name",
+    "table": "table_name"
+}
+```
+
+Response:
+
+```
+[
+    {
+        "column": "data"
+        ...
+    },
+    ...
+]
+```
+
+
 ### Errors
 Any kind of error sends json reply like this:
 
@@ -82,5 +105,7 @@ error 3 - get databases error
 error 4 - invalid token
 
 error 5 - get tables error
+
+error 6 - get data error
 
 error 500 - fatal error
