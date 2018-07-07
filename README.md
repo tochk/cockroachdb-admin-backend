@@ -65,7 +65,10 @@ Request:
 {
     "token": "sample token",
     "db": "db_name",
-    "table": "table_name"
+    "table": "table_name",
+    //optional
+    "limit": 10,
+    "offset": 10
 }
 ```
 

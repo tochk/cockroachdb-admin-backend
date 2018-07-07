@@ -1,13 +1,17 @@
 package data
 
 import (
+	"strconv"
+
 	"github.com/tochk/cockroachdb-admin-backend/connections_manager"
 )
 
 type Query struct {
-	Token string `json:"token"`
-	Db    string `json:"db"`
-	Table string `json:"table"`
+	Token  string `json:"token"`
+	Db     string `json:"db"`
+	Table  string `json:"table"`
+	Limit  int    `json:"limit"`
+	Offset int    `json:"offset"`
 }
 
 type Answer map[string]interface{}
@@ -21,7 +25,14 @@ func GetData(query Query) (answer []Answer, err error) {
 	if err != nil {
 		return nil, err
 	}
-	rows, err := conn.Queryx("SELECT * FROM " + query.Table)
+	q := "SELECT * FROM " + query.Table
+	if query.Limit != 0 {
+		q += " LIMIT " + strconv.Itoa(query.Limit)
+	}
+	if query.Offset != 0 {
+		q += " OFFSET " + strconv.Itoa(query.Offset)
+	}
+	rows, err := conn.Queryx(q)
 	if err != nil {
 		return nil, err
 	}
