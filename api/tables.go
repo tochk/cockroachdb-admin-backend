@@ -36,3 +36,30 @@ func TablesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Fprint(w, string(result))
 }
+
+func CreateTableHandler(w http.ResponseWriter, r *http.Request) {
+	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+	var query tables.CreateQuery
+	err := decoder.Decode(&query)
+	if err != nil {
+		fmt.Fprint(w, appError.GetJsonError(1, "Parsing json error", err))
+		return
+	}
+
+	tbl, err := tables.CreateTable(query)
+	if err != nil {
+		if err == connections_manager.InvalidTokenError {
+			fmt.Fprint(w, appError.GetJsonError(4, "Invalid token", err))
+			return
+		}
+		fmt.Fprint(w, appError.GetJsonError(5, "Get tables error", err))
+		return
+	}
+	result, err := json.Marshal(tbl)
+	if err != nil {
+		fmt.Fprint(w, appError.GetJsonError(1, "Parsing json error", err))
+		return
+	}
+	fmt.Fprint(w, string(result))
+}

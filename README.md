@@ -59,6 +59,30 @@ Response:
 ]
 ```
 
+### Create table "/api/tables/create/"
+
+Request:
+```
+{
+    "token": "sample token",
+    "db": "db_name",
+    "table": "table_name"
+}
+```
+
+Response:
+
+Tables list.
+
+```
+[
+    {
+        "table": "table_name"
+    },
+    ...
+]
+```
+
 ### Get data "/api/data/"
 Request:
 ```
