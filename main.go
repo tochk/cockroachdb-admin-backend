@@ -30,6 +30,7 @@ func main() {
 	http.HandleFunc("/api/databases/", api.DatabasesHandler)
 	http.HandleFunc("/api/tables/", api.TablesHandler)
 	http.HandleFunc("/api/tables/create/", api.CreateTableHandler)
+	http.HandleFunc("/api/tables/drop/", api.DropTableHandler)
 	http.HandleFunc("/api/data/", api.DataHandler)
 
 	log.Info("Starting listen connections on ", *servicePort)

@@ -2,14 +2,13 @@ package tables
 
 import "github.com/tochk/cockroachdb-admin-backend/connections_manager"
 
-type CreateQuery struct {
+type DropQuery struct {
 	Token string `json:"token"`
 	Db    string `json:"db"`
 	Table string `json:"table"`
 }
 
-//todo add normal create table
-func CreateTable(query CreateQuery) (tables []Tables, err error) {
+func DropTable(query DropQuery) (tables []Tables, err error) {
 	conn, err := connections_manager.GetConnection(query.Token)
 	if err != nil {
 		return tables, err
@@ -18,7 +17,7 @@ func CreateTable(query CreateQuery) (tables []Tables, err error) {
 	if err != nil {
 		return tables, err
 	}
-	_, err = conn.Exec("CREATE TABLE " + query.Table)
+	_, err = conn.Exec("DROP TABLE " + query.Table)
 	if err != nil {
 		return tables, err
 	}

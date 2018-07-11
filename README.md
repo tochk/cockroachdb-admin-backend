@@ -83,6 +83,30 @@ Tables list.
 ]
 ```
 
+### Drop table "/api/tables/drop/"
+
+Request:
+```
+{
+    "token": "sample token",
+    "db": "db_name",
+    "table": "table_name"
+}
+```
+
+Response:
+
+Tables list.
+
+```
+[
+    {
+        "table": "table_name"
+    },
+    ...
+]
+```
+
 ### Get data "/api/data/"
 Request:
 ```
@@ -134,5 +158,9 @@ error 4 - invalid token
 error 5 - get tables error
 
 error 6 - get data error
+
+error 7 - create table error
+
+error 8 - drop table error
 
 error 500 - fatal error
