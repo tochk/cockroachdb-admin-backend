@@ -39,6 +39,52 @@ Response:
 ```
 
 
+### Create database "/api/databases/create/"
+
+Request:
+```
+{
+    "token": "sample token",
+    "db": "db_name"
+}
+```
+
+Response:
+
+Databases list.
+
+```
+[
+    {
+        "database": "db_name"
+    },
+    ...
+]
+```
+
+### Drop database "/api/databases/drop/"
+
+Request:
+```
+{
+    "token": "sample token",
+    "db": "db_name"
+}
+```
+
+Response:
+
+Databases list.
+
+```
+[
+    {
+        "database": "db_name"
+    },
+    ...
+]
+```
+
 ### Get tables "/api/tables/"
 Request:
 ```
@@ -164,5 +210,7 @@ error 7 - create table error
 error 8 - drop table error
 
 error 9 - create database error
+
+error 10 - drop database error
 
 error 500 - fatal error

@@ -29,6 +29,7 @@ func main() {
 	http.HandleFunc("/api/connect/", api.ConnectHandler)
 	http.HandleFunc("/api/databases/", api.DatabasesHandler)
 	http.HandleFunc("/api/databases/create/", api.CreateDatabaseHandler)
+	http.HandleFunc("/api/databases/drop/", api.DropDatabaseHandler)
 	http.HandleFunc("/api/tables/", api.TablesHandler)
 	http.HandleFunc("/api/tables/create/", api.CreateTableHandler)
 	http.HandleFunc("/api/tables/drop/", api.DropTableHandler)
