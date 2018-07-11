@@ -27,13 +27,18 @@ func main() {
 	log.Info("Configuration file loaded")
 
 	http.HandleFunc("/api/connect/", api.ConnectHandler)
+
 	http.HandleFunc("/api/databases/", api.DatabasesHandler)
 	http.HandleFunc("/api/databases/create/", api.CreateDatabaseHandler)
 	http.HandleFunc("/api/databases/drop/", api.DropDatabaseHandler)
+
 	http.HandleFunc("/api/tables/", api.TablesHandler)
 	http.HandleFunc("/api/tables/create/", api.CreateTableHandler)
 	http.HandleFunc("/api/tables/drop/", api.DropTableHandler)
+
 	http.HandleFunc("/api/data/", api.DataHandler)
+
+	http.HandleFunc("/api/indexes/", api.IndexesHandler)
 
 	log.Info("Starting listen connections on ", *servicePort)
 	http.ListenAndServe(*servicePort, nil)

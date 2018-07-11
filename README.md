@@ -179,6 +179,35 @@ Response:
 ```
 
 
+### Get indexes "/api/indexes/"
+
+Request:
+```
+{
+    "token": "sample token",
+    "database": "db_name",
+    "table": "table_name"
+}
+```
+
+Response:
+
+```
+[
+    {
+        "table":"departments",
+        "name":"primary",
+        "unique":true,
+        "seq":1,
+        "column":"rowid",
+        "direction":"ASC",
+        "storing":false,
+        "implicit":false
+    }
+    ...
+]
+```
+
 ### Errors
 Any kind of error sends json reply like this:
 
@@ -212,5 +241,7 @@ error 8 - drop table error
 error 9 - create database error
 
 error 10 - drop database error
+
+error 11 - get indexes error
 
 error 500 - fatal error
