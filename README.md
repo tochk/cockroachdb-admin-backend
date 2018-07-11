@@ -59,7 +59,7 @@ Response:
 ]
 ```
 
-### Create table "/api/tables/create/"
+### NOT COMPLETED! Create table "/api/tables/create/"
 
 Request:
 ```
@@ -162,5 +162,7 @@ error 6 - get data error
 error 7 - create table error
 
 error 8 - drop table error
+
+error 9 - create database error
 
 error 500 - fatal error

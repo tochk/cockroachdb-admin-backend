@@ -36,3 +36,31 @@ func DatabasesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Fprint(w, string(result))
 }
+
+
+func CreateDatabaseHandler(w http.ResponseWriter, r *http.Request) {
+	decoder := json.NewDecoder(r.Body)
+	defer r.Body.Close()
+	var query databases.CreateQuery
+	err := decoder.Decode(&query)
+	if err != nil {
+		fmt.Fprint(w, appError.GetJsonError(1, "Parsing json error", err))
+		return
+	}
+
+	db, err := databases.CreateDatabase(query)
+	if err != nil {
+		if err == connections_manager.InvalidTokenError {
+			fmt.Fprint(w, appError.GetJsonError(4, "Invalid token", err))
+			return
+		}
+		fmt.Fprint(w, appError.GetJsonError(9, "Get databases error", err))
+		return
+	}
+	result, err := json.Marshal(db)
+	if err != nil {
+		fmt.Fprint(w, appError.GetJsonError(1, "Parsing json error", err))
+		return
+	}
+	fmt.Fprint(w, string(result))
+}
