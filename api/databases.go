@@ -6,11 +6,13 @@ import (
 	"net/http"
 
 	"github.com/tochk/cockroachdb-admin-backend/appError"
+	"github.com/tochk/cockroachdb-admin-backend/common"
 	"github.com/tochk/cockroachdb-admin-backend/connections_manager"
 	"github.com/tochk/cockroachdb-admin-backend/databases"
 )
 
 func DatabasesHandler(w http.ResponseWriter, r *http.Request) {
+	common.CORS(&w)
 	decoder := json.NewDecoder(r.Body)
 	defer r.Body.Close()
 	var auth Auth
@@ -39,6 +41,7 @@ func DatabasesHandler(w http.ResponseWriter, r *http.Request) {
 
 
 func CreateDatabaseHandler(w http.ResponseWriter, r *http.Request) {
+	common.CORS(&w)
 	decoder := json.NewDecoder(r.Body)
 	defer r.Body.Close()
 	var query databases.CreateQuery
@@ -66,6 +69,7 @@ func CreateDatabaseHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DropDatabaseHandler(w http.ResponseWriter, r *http.Request) {
+	common.CORS(&w)
 	decoder := json.NewDecoder(r.Body)
 	defer r.Body.Close()
 	var query databases.DropQuery

@@ -6,11 +6,13 @@ import (
 	"net/http"
 
 	"github.com/tochk/cockroachdb-admin-backend/appError"
+	"github.com/tochk/cockroachdb-admin-backend/common"
 	"github.com/tochk/cockroachdb-admin-backend/connections_manager"
 	"github.com/tochk/cockroachdb-admin-backend/data"
 )
 
 func DataHandler(w http.ResponseWriter, r *http.Request) {
+	common.CORS(&w)
 	decoder := json.NewDecoder(r.Body)
 	defer r.Body.Close()
 	var query data.Query

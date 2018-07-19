@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/tochk/cockroachdb-admin-backend/appError"
+	"github.com/tochk/cockroachdb-admin-backend/common"
 	"github.com/tochk/cockroachdb-admin-backend/connections_manager"
 	"github.com/tochk/cockroachdb-admin-backend/user"
 )
@@ -15,6 +16,7 @@ type Auth struct {
 }
 
 func ConnectHandler(w http.ResponseWriter, r *http.Request) {
+	common.CORS(&w)
 	decoder := json.NewDecoder(r.Body)
 	defer r.Body.Close()
 	var usr user.User
