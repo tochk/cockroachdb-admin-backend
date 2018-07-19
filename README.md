@@ -208,6 +208,38 @@ Response:
 ]
 ```
 
+### Get data "/api/query/"
+Request:
+```
+{
+    "token": "sample token",
+    "database": "db_name",
+    "query": "SELECT..."
+}
+```
+
+Response:
+
+if select statement
+```
+[
+    {
+        "column": "data"
+        ...
+    },
+    ...
+]
+```
+
+else 
+```
+{ 
+    "status": 200
+}
+
+```
+
+
 ### Errors
 Any kind of error sends json reply like this:
 
@@ -243,5 +275,7 @@ error 9 - create database error
 error 10 - drop database error
 
 error 11 - get indexes error
+
+error 12 - query error
 
 error 500 - fatal error

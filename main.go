@@ -40,6 +40,8 @@ func main() {
 
 	http.HandleFunc("/api/indexes/", api.IndexesHandler)
 
+	http.HandleFunc("/api/query/", api.QueryHandler)
+
 	log.Info("Starting listen connections on ", *servicePort)
 	http.ListenAndServe(*servicePort, nil)
 }
