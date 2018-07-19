@@ -7,7 +7,7 @@ import (
 )
 
 type err struct {
-	Code  int `json:"code"`
+	Code  int    `json:"code"`
 	Human string `json:"human"`
 	Err   string `json:"err"`
 }

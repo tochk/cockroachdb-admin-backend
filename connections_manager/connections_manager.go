@@ -30,7 +30,7 @@ func generateKey() []byte {
 	return salt
 }
 
-func generateToken(login, password string) (string) {
+func generateToken(login, password string) string {
 	hasher := sha256.New()
 	hasher.Write([]byte(login))
 	token := hex.EncodeToString(hasher.Sum(nil))

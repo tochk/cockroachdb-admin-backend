@@ -45,7 +45,7 @@ Request:
 ```
 {
     "token": "sample token",
-    "db": "db_name"
+    "database": "db_name"
 }
 ```
 
@@ -68,7 +68,7 @@ Request:
 ```
 {
     "token": "sample token",
-    "db": "db_name"
+    "database": "db_name"
 }
 ```
 
@@ -90,7 +90,7 @@ Request:
 ```
 {
     "token": "sample token",
-    "db": "db_name"
+    "database": "db_name"
 }
 ```
 
@@ -111,7 +111,7 @@ Request:
 ```
 {
     "token": "sample token",
-    "db": "db_name",
+    "database": "db_name",
     "table": "table_name"
 }
 ```
@@ -135,7 +135,7 @@ Request:
 ```
 {
     "token": "sample token",
-    "db": "db_name",
+    "database": "db_name",
     "table": "table_name"
 }
 ```
@@ -158,7 +158,7 @@ Request:
 ```
 {
     "token": "sample token",
-    "db": "db_name",
+    "database": "db_name",
     "table": "table_name",
     //optional
     "limit": 10,

@@ -30,7 +30,7 @@ func ConnectHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, appError.GetJsonError(2, "Connection to database error", err))
 		return
 	}
-	result, err := json.Marshal(Auth{Token:token})
+	result, err := json.Marshal(Auth{Token: token})
 	if err != nil {
 		fmt.Fprint(w, appError.GetJsonError(1, "Parsing json error", err))
 		return

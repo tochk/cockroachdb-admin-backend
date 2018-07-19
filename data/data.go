@@ -7,11 +7,11 @@ import (
 )
 
 type Query struct {
-	Token  string `json:"token"`
-	Db     string `json:"db"`
-	Table  string `json:"table"`
-	Limit  int    `json:"limit"`
-	Offset int    `json:"offset"`
+	Token    string `json:"token"`
+	Database string `json:"database"`
+	Table    string `json:"table"`
+	Limit    int    `json:"limit"`
+	Offset   int    `json:"offset"`
 }
 
 type Answer map[string]interface{}
@@ -21,7 +21,7 @@ func GetData(query Query) (answer []Answer, err error) {
 	if err != nil {
 		return nil, err
 	}
-	_, err = conn.Exec("USE " + query.Db)
+	_, err = conn.Exec("USE " + query.Database)
 	if err != nil {
 		return nil, err
 	}

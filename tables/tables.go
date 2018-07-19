@@ -7,8 +7,8 @@ type Tables struct {
 }
 
 type Query struct {
-	Token string `json:"token"`
-	Db    string `json:"db"`
+	Token    string `json:"token"`
+	Database string `json:"database"`
 }
 
 func GetTables(query Query) (tables []Tables, err error) {
@@ -16,7 +16,7 @@ func GetTables(query Query) (tables []Tables, err error) {
 	if err != nil {
 		return tables, err
 	}
-	_, err = conn.Exec("USE " + query.Db)
+	_, err = conn.Exec("USE " + query.Database)
 	if err != nil {
 		return tables, err
 	}

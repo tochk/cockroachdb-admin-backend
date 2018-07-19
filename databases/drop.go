@@ -19,4 +19,3 @@ func DropDatabase(query DropQuery) (db []Database, err error) {
 	err = conn.Select(&db, "SHOW DATABASES")
 	return
 }
-

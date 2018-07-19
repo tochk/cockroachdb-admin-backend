@@ -39,7 +39,6 @@ func DatabasesHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, string(result))
 }
 
-
 func CreateDatabaseHandler(w http.ResponseWriter, r *http.Request) {
 	common.CORS(&w)
 	decoder := json.NewDecoder(r.Body)
