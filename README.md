@@ -39,7 +39,7 @@ Response:
 ```
 
 
-### Create database "/api/databases/create/"
+### NOT COMPLETED! Create database "/api/databases/create/"
 
 Request:
 ```
@@ -153,6 +153,41 @@ Tables list.
 ]
 ```
 
+### Get table schema "/api/tables/schema/"
+
+Request:
+```
+{
+    "token": "sample token",
+    "database": "db_name",
+    "table": "table_name"
+}
+```
+
+Response:
+
+Columns list.
+
+```
+{
+    "rows":[
+        {
+            "character_maximum_length":null,
+            "character_octet_length":null,
+            "column_default":"unique_rowid()",
+            "column_name":"id",
+            "data_type":"INT",
+            "datetime_precision":null,
+            "is_nullable":"NO",
+            "numeric_precision":64,
+            "numeric_scale":0,
+            "ordinal_position":1
+        },
+        ...
+    ]
+}
+```
+
 ### Get data "/api/data/"
 Request:
 ```
@@ -169,13 +204,16 @@ Request:
 Response:
 
 ```
-[
-    {
-        "column": "data"
+{
+    "count":829,
+    "rows":[
+        {
+            "column": "data"
+            ...
+        },
         ...
-    },
-    ...
-]
+    ]
+}
 ```
 
 
@@ -277,5 +315,7 @@ error 10 - drop database error
 error 11 - get indexes error
 
 error 12 - query error
+
+error 13 - get schema error
 
 error 500 - fatal error
