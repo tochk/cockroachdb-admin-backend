@@ -14,17 +14,24 @@ type Query struct {
 	Offset   int    `json:"offset"`
 }
 
-type Answer map[string]interface{}
+type Answer struct {
+	Count int                      `json:"count"`
+	Rows  []map[string]interface{} `json:"rows"`
+}
 
-func GetData(query Query) (answer []Answer, err error) {
+func GetData(query Query) (answer Answer, err error) {
 	conn, err := connections_manager.GetConnection(query.Token)
 	if err != nil {
-		return nil, err
+		return
 	}
 	_, err = conn.Exec("USE " + query.Database)
 	if err != nil {
-		return nil, err
+		return
 	}
+	var count int
+	countQuery := "SELECT COUNT (*) FROM " + query.Table
+	conn.Get(&count, countQuery)
+	answer.Count = count
 	q := "SELECT * FROM " + query.Table
 	if query.Limit != 0 {
 		q += " LIMIT " + strconv.Itoa(query.Limit)
@@ -34,12 +41,12 @@ func GetData(query Query) (answer []Answer, err error) {
 	}
 	rows, err := conn.Queryx(q)
 	if err != nil {
-		return nil, err
+		return
 	}
 	for rows.Next() {
 		results := make(map[string]interface{})
 		err = rows.MapScan(results)
-		answer = append(answer, results)
+		answer.Rows = append(answer.Rows, results)
 	}
 	return
 }
