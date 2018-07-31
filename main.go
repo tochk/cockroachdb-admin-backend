@@ -4,6 +4,7 @@ import (
 	"flag"
 	"net/http"
 
+	"github.com/GeertJohan/go.rice"
 	log "github.com/Sirupsen/logrus"
 	"github.com/tochk/cockroachdb-admin-backend/api"
 	"github.com/tochk/cockroachdb-admin-backend/configuration"
@@ -42,6 +43,8 @@ func main() {
 	http.HandleFunc("/api/indexes/", api.IndexesHandler)
 
 	http.HandleFunc("/api/query/", api.QueryHandler)
+
+	http.Handle("/", http.FileServer(rice.MustFindBox("static").HTTPBox()))
 
 	log.Info("Starting listen connections on ", *servicePort)
 	http.ListenAndServe(*servicePort, nil)

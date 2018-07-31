@@ -1,0 +1,2 @@
+# CockroachDB-admin static files
+
