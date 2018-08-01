@@ -23,3 +23,10 @@ mv dist/build.js.map ../../../static/build.js.map
 
 cd ../../../
 rm -rf tmp
+
+sed 's+/dist/build.js+/build.js+g' static/index.html &> static/index2.html
+
+rm -rf static/index.html
+mv static/index2.html static/index.html
+
+rice embed-go
