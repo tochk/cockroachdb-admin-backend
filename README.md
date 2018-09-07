@@ -105,14 +105,36 @@ Response:
 ]
 ```
 
-### NOT COMPLETED! Create table "/api/tables/create/"
+### Create table "/api/tables/create/"
 
 Request:
 ```
 {
     "token": "sample token",
     "database": "db_name",
-    "table": "table_name"
+    "table": "table_name",
+    "fields": [
+        {
+            "name": "filed_name"
+            "type": "STRING",
+            "length": "20", //not required
+            "key": "PRIMARY KEY",
+            "default": "current_date()",
+            "null": true
+        }, ...
+    ],
+    "constraints": [
+        {
+            "name": "test_r",
+            "check": "..."
+        }, ...
+    ],
+    "indexes": [
+        {
+            "name": "test_re",
+            "fields": "id, name"
+        }, ...
+    ],
 }
 ```
 
